@@ -168,9 +168,17 @@ document.addEventListener('keydown', event => {
 });
 
 function startGame() {
-  document.getElementById('intro').style.display = 'none';
-  document.getElementById('gameContainer').style.display = 'flex';
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("gameContainer").style.display = "flex";
+
+  // Putar musik saat user klik tombol
+  const music = document.getElementById("bg-music");
+  music.play();
+
+  // Mulai game Tetris (panggil fungsi kamu di sini)
+  initGame(); // ganti ini dengan fungsi kamu sendiri
 }
+
 
 playerReset();
 update();
