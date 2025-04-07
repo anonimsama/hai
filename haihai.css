@@ -153,6 +153,25 @@ body.fade-out {
   background: #000;
 }
 
+#loveEffect {
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.5);
+  font-size: 4rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 1s ease;
+  z-index: 999;
+}
+
+#loveEffect.show {
+  opacity: 1;
+  bottom: 50%;
+  transform: translateX(-50%) scale(1.5);
+}
+
+
 
 @media (min-width: 768px) {
   #controls {
