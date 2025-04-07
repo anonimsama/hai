@@ -211,15 +211,15 @@ function showMessage() {
   const btn = document.querySelector('.btn');
   btn.classList.add('show');
 
-  // Tambahkan efek suara dan pause musik saat tombol 💌 diklik
   btn.addEventListener('click', () => {
-    const clickSound = document.getElementById("click-sound");
+    // Pause musik
     const bgMusic = document.getElementById("bg-music");
-    
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+
+    // Mainkan suara klik
+    const clickSound = document.getElementById("click-sound");
     clickSound.currentTime = 0;
     clickSound.play();
-
-    // Hentikan musik
-    bgMusic.pause();
   });
 }
