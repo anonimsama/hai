@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rahasia Terbuka</title>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -17,6 +18,7 @@
       justify-content: center;
       height: 100vh;
       text-align: center;
+      flex-direction: column;
     }
 
     .content {
@@ -24,6 +26,7 @@
       padding: 20px;
       animation: fadeIn 2s ease forwards;
       opacity: 0;
+      display: none;
     }
 
     h1 {
@@ -32,6 +35,7 @@
       background: linear-gradient(90deg, #00f5a0, #00d9f5);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px #00f5a0, 0 0 20px #00d9f5;
     }
 
     p {
@@ -52,13 +56,13 @@
     }
 
     .btn {
-      margin-top: 30px;
-      padding: 10px 20px;
+      margin-top: 20px;
+      padding: 12px 25px;
       border: 1px solid white;
       background: transparent;
       color: white;
       font-size: 1rem;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
       transition: 0.3s;
     }
@@ -67,30 +71,34 @@
       background: white;
       color: #111;
     }
+
+    #startBtn {
+      animation: fadeIn 2s ease forwards;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      p { font-size: 1rem; }
+    }
   </style>
 </head>
 <body>
 
-<div class="content">
-  <h1>sebenarnya cuma mau bilang...</h1>
-  <p>
-    saya mau jujur soal sesuatu yang udah aku simpan cukup lama.<br/>
-    saya nggak tau gimana awalnya, tapi makin lama saya makin ngerasa nyaman sama kamu. Entah itu dari cara kamu ngomong, bercanda, atau sekadar jadi diri kamu sendiri,  semuanya bikin saya betah buat terus ngobrol dan deket. saya sering mikir, "Apa saya harus ngomong ini?" Tapi saya sadar, kalau saya terus diem, kamu nggak akan pernah tau. Jadi…
+<button class="btn" id="startBtn">Tap untuk mulai</button>
 
-    saya suka kamu. saya cuma pengen kamu tau perasaan saya yang sebenarnya aja.<br/><br/>
-    Jadi, makasih udah main gamenya. Gimana? Seru? <br/>
-    maaf kalo waktunya ke ganggu
-  </p>
+<div class="content" id="mainContent">
+  <h1>sebenarnya cuma mau bilang...</h1>
+  <p id="typed"></p>
 </div>
 
 <canvas id="particles"></canvas>
 
-<audio autoplay loop>
+<audio id="bgMusic" loop>
   <source src="love.mp3" type="audio/mp3">
 </audio>
 
 <script>
-  // Partikel animasi latar belakang
+  // Partikel background
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth;
@@ -120,6 +128,35 @@
   }
 
   drawParticles();
+
+  // Mulai musik dan teks setelah tap
+  document.getElementById('startBtn').addEventListener('click', () => {
+    const audio = document.getElementById('bgMusic');
+    const content = document.getElementById('mainContent');
+    const button = document.getElementById('startBtn');
+
+    audio.play();
+    button.style.display = 'none';
+    content.style.display = 'block';
+
+    setTimeout(() => {
+      content.style.opacity = 1;
+    }, 100); // biar animasi fadeIn tetap jalan
+
+    new Typed('#typed', {
+      strings: [
+        "saya mau jujur soal sesuatu yang udah aku simpan cukup lama.<br/><br/>" +
+        "saya nggak tau gimana awalnya, tapi makin lama saya makin ngerasa nyaman sama kamu. " +
+        "Entah itu dari cara kamu ngomong, bercanda, atau sekadar jadi diri kamu sendiri, semuanya bikin saya betah buat terus ngobrol dan deket.<br/><br/>" +
+        "saya sering mikir, 'Apa saya harus ngomong ini?' Tapi saya sadar, kalau saya terus diem, kamu nggak akan pernah tau. Jadi…<br/><br/>" +
+        "<strong>saya suka kamu.</strong> saya cuma pengen kamu tau perasaan saya yang sebenarnya aja.<br/><br/>" +
+        "Jadi, makasih udah main gamenya. Gimana? Seru?<br/>" +
+        "maaf kalo waktunya ke ganggu"
+      ],
+      typeSpeed: 30,
+      showCursor: false,
+    });
+  });
 </script>
 
 </body>
