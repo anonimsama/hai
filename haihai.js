@@ -182,3 +182,23 @@ function startGame() {
 
 playerReset();
 update();
+
+function revealSecret() {
+  const music = document.getElementById('bg-music');
+  music.pause();
+  music.currentTime = 0;
+
+  const sound = document.getElementById('click-sound');
+  if (sound) sound.play();
+
+  if (navigator.vibrate) {
+    navigator.vibrate(200);
+  }
+
+  document.body.classList.add('fade-out');
+
+  setTimeout(() => {
+    window.open('hahaha.html', '_blank');
+  }, 1000);
+}
+
