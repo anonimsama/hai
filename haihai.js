@@ -206,3 +206,20 @@ function revealSecret() {
   }, 1500);
 }
 
+function showMessage() {
+  document.getElementById('message').style.opacity = 1;
+  const btn = document.querySelector('.btn');
+  btn.classList.add('show');
+
+  // Tambahkan efek suara dan pause musik saat tombol 💌 diklik
+  btn.addEventListener('click', () => {
+    const clickSound = document.getElementById("click-sound");
+    const bgMusic = document.getElementById("bg-music");
+    
+    clickSound.currentTime = 0;
+    clickSound.play();
+
+    // Hentikan musik
+    bgMusic.pause();
+  });
+}
