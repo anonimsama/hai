@@ -149,6 +149,10 @@ canvas {
   transition: opacity 1s ease;
 }
 
+body.fade-out {
+  background: #000;
+}
+
 
 @media (min-width: 768px) {
   #controls {
