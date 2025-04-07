@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rahasia Terbuka</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(120deg, #111, #1a1a1a);
+      color: white;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .content {
+      max-width: 700px;
+      padding: 20px;
+      animation: fadeIn 2s ease forwards;
+      opacity: 0;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #00f5a0, #00d9f5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: white;
+      color: #111;
+    }
+  </style>
+</head>
+<body>
+
+<div class="content">
+  <h1>sebenarnya cuma mau bilang...</h1>
+  <p>
+    saya mau jujur soal sesuatu yang udah aku simpan cukup lama.<br/>
+    saya nggak tau gimana awalnya, tapi makin lama saya makin ngerasa nyaman sama kamu. Entah itu dari cara kamu ngomong, bercanda, atau sekadar jadi diri kamu sendiri,  semuanya bikin saya betah buat terus ngobrol dan deket. saya sering mikir, "Apa saya harus ngomong ini?" Tapi saya sadar, kalau saya terus diem, kamu nggak akan pernah tau. Jadi…
+
+    saya suka kamu. saya cuma pengen kamu tau perasaan saya yang sebenarnya aja.<br/><br/>
+    Jadi, makasih udah main gamenya. Gimana? Seru? <br/>
+    maaf kalo waktunya ke ganggu
+  </p>
+</div>
+
+<canvas id="particles"></canvas>
+
+<audio autoplay loop>
+  <source src="love.mp3" type="audio/mp3">
+</audio>
+
+<script>
+  // Partikel animasi latar belakang
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = Array.from({ length: 60 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random() * 2 + 1,
+    dx: Math.random() * 0.6 - 0.3,
+    dy: Math.random() * 0.6 - 0.3
+  }));
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'rgba(255,255,255,0.1)';
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    });
+    requestAnimationFrame(drawParticles);
+  }
+
+  drawParticles();
+</script>
+
+</body>
+</html>
