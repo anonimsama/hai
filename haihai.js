@@ -195,10 +195,14 @@ function revealSecret() {
     navigator.vibrate(200);
   }
 
+  // Tambahkan efek love
+  const love = document.getElementById('loveEffect');
+  love.classList.add('show');
+
   document.body.classList.add('fade-out');
 
   setTimeout(() => {
     window.open('hahaha.html', '_blank');
-  }, 1000);
+  }, 1500);
 }
 
