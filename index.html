@@ -6,6 +6,12 @@
   <title>Main Sebentar Yuk</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="haihai.css" />
+  <style>
+    /* Extra inline fix for Safari 100vh */
+    .container {
+      height: calc(var(--vh, 1vh) * 100);
+    }
+  </style>
 </head>
 <body>
   <div class="container" id="intro">
@@ -33,17 +39,25 @@
   </div>
 
   <canvas class="particles"></canvas>
-    <div id="loveEffect">💖</div>
+  <div id="loveEffect">💖</div>
 
   <audio id="bg-music" loop>
     <source src="ope.mp3" type="audio/mp3">
   </audio>
 
-  <script src="haihai.js"></script>
- 
   <audio id="click-sound">
     <source src="wus.mp3" type="audio/mp3">
-</audio>
+  </audio>
 
+  <script src="haihai.js"></script>
+
+  <!-- 100vh fix untuk semua browser -->
+  <script>
+    function setFullHeight() {
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+    }
+    window.addEventListener('resize', setFullHeight);
+    window.addEventListener('load', setFullHeight);
+  </script>
 </body>
 </html>
